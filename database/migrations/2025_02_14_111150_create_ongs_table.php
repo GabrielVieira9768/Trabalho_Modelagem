@@ -25,6 +25,7 @@ return new class extends Migration
             $table->String('documento');
             $table->boolean('status')->default(false);
             $table->unsignedBigInteger('endereco_id'); // Chave Estrangeira
+            $table->rememberToken();
             $table->timestamps();
         });
 
