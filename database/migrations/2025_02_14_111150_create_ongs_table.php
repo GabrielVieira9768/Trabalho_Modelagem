@@ -11,24 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('ongs', function (Blueprint $table) {
             $table->id(); // Chave Primária
             $table->string('nome');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->String('cpf')->unique();
-            $table->date('data_nascimento');
+            $table->String('cnpj')->unique();
             $table->String('telefone');
-            $table->boolean('cargo')->default(false);
-            $table->String('curriculo');
+            $table->enum('categoria', ['opcao1', 'opcao2', 'opcao3']);
+            $table->String('descricao');
+            $table->String('logo');
+            $table->String('documento');
+            $table->boolean('status')->default(false);
             $table->unsignedBigInteger('endereco_id'); // Chave Estrangeira
             $table->rememberToken();
             $table->timestamps();
         });
 
-        Schema::table('inscricoes', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
+        Schema::table('projetos', function (Blueprint $table) {
+            $table->foreign('ong_id')->references('id')->on('ongs')->onDelete('cascade');
         });
     }
 
@@ -37,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('ongs');
     }
 };

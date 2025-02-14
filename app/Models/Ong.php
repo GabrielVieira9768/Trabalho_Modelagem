@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Ong extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -21,11 +18,13 @@ class User extends Authenticatable
         'nome',
         'email',
         'password',
-        'cpf',
-        'data_nascimento',
+        'cnpj',
         'telefone',
-        'cargo',
-        'curriculo',
+        'categoria',
+        'descricao',
+        'logo',
+        'documento',
+        'status',
         'endereco_id',
     ];
 
@@ -47,8 +46,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'data_nascimento' => 'date',
-        'cargo' => 'boolean',
+        'status' => 'boolean',
     ];
 
     /**
@@ -57,5 +55,13 @@ class User extends Authenticatable
     public function endereco()
     {
         return $this->belongsTo(Endereco::class);
+    }
+
+    /**
+     * Relacionamento com projetos.
+     */
+    public function projetos()
+    {
+        return $this->hasMany(Projeto::class, 'ong_id');
     }
 }
