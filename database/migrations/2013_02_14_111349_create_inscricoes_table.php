@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('inscricoes', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Chave Primária
+            $table->dateTime('data');
+            $table->unsignedBigInteger('user_id'); // Chave Estrangeira
+            $table->unsignedBigInteger('projeto_id'); // Chave Estrangeira
             $table->timestamps();
         });
     }

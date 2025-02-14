@@ -12,8 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ongs', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Chave Primária
+            $table->string('nome');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->String('cnpj')->unique();
+            $table->String('telefone');
+            $table->enum('categoria', ['opcao1', 'opcao2', 'opcao3']);
+            $table->String('descricao');
+            $table->String('logo');
+            $table->String('documento');
+            $table->boolean('status')->default(false);
+            $table->unsignedBigInteger('endereco_id'); // Chave Estrangeira
             $table->timestamps();
+        });
+
+        Schema::table('projetos', function (Blueprint $table) {
+            $table->foreign('ong_id')->references('id')->on('ongs')->onDelete('cascade');
         });
     }
 

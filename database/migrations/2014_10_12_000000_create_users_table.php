@@ -26,6 +26,10 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::table('inscricoes', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
