@@ -9,13 +9,9 @@ class Inscricao extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'inscricoes';
+
     protected $fillable = [
-        'data',
         'user_id',
         'projeto_id',
     ];

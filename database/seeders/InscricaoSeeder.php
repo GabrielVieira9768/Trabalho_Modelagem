@@ -2,16 +2,18 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Inscricao;
 use Illuminate\Database\Seeder;
 
 class InscricaoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
     public function run(): void
     {
-        //
+        Inscricao::factory(10)->create();
     }
 }

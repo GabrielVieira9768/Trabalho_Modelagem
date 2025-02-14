@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Ong;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class ProjetoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nome' => $this->faker->word(),
+            'data' => $this->faker->date(),
+            'imagem' => $this->faker->imageUrl(),
+            'local' => $this->faker->city(),
+            'descricao' => $this->faker->text(),
+            'vagas' => $this->faker->numberBetween(1, 100),
+            'ong_id' => Ong::factory(), // Relaciona o projeto a uma ONG
         ];
     }
 }
