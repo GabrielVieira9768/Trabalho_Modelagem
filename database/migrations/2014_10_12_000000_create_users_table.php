@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('data_nascimento');
             $table->String('telefone');
             $table->boolean('cargo')->default(false);
-            $table->String('curriculo');
+            $table->String('curriculo')->nullable();
             $table->unsignedBigInteger('endereco_id'); // Chave Estrangeira
             $table->rememberToken();
             $table->timestamps();
