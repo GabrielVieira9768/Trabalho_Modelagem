@@ -19,8 +19,8 @@ class InscricaoFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'projeto_id' => Projeto::factory(),
+            'user_id' => User::factory(), // Relaciona a inscrição a um usuário
+            'projeto_id' => Projeto::factory(), // Relaciona a inscrição a um projeto
         ];
     }
 }
