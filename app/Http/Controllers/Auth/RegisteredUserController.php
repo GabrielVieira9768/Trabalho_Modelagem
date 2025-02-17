@@ -31,30 +31,34 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validação de dados
         $request->validate([
+            // Usuário
             'nome' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'cpf' => ['required', 'string', 'max:14', 'unique:users'],
             'data_nascimento' => ['required', 'date'],
             'curriculo' => ['file', 'mimes:pdf,doc,docx', 'max:2048'],
-            'endereco.cep' => ['required', 'string'],
-            'endereco.estado' => ['required', 'string'],
-            'endereco.cidade' => ['required', 'string'],
-            'endereco.logradouro' => ['required', 'string'],
-            'endereco.bairro' => ['required', 'string'],
-            'endereco.numero' => ['required', 'string'],
-            'endereco.complemento' => ['nullable', 'string'],
+
+            // Endereço
+            'cep' => ['required', 'string'],
+            'estado' => ['required', 'string'],
+            'cidade' => ['required', 'string'],
+            'logradouro' => ['required', 'string'],
+            'bairro' => ['required', 'string'],
+            'numero' => ['required', 'string'],
+            'complemento' => ['nullable', 'string'],
         ]);
 
         $endereco = Endereco::create([
-            'cep' => $request->input('endereco.cep'),
-            'estado' => $request->input('endereco.estado'),
-            'cidade' => $request->input('endereco.cidade'),
-            'logradouro' => $request->input('endereco.logradouro'),
-            'bairro' => $request->input('endereco.bairro'),
-            'numero' => $request->input('endereco.numero'),
-            'complemento' => $request->input('endereco.complemento'),
+            'cep' => $request->cep,
+            'estado' => $request->estado,
+            'cidade' => $request->cidade,
+            'logradouro' => $request->logradouro,
+            'bairro' => $request->bairro,
+            'numero' => $request->numero,
+            'complemento' => $request->complemento,
         ]);
 
         // Criar o usuário e associar o endereço
