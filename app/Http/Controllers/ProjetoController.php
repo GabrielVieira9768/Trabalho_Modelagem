@@ -30,10 +30,10 @@ class ProjetoController extends Controller
     }
 
     // Atualiza um projeto específico
-    public function update(Request $request)
+    public function update(Request $request, String $id)
     {
-        $projeto = Projeto::find($request->id);
-        $projeto->update(request()->all());
+        $projeto = Projeto::find($id);
+        $projeto->update($request->all());
         return redirect()->route('projetos.index');
     }
 }

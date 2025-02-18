@@ -14,4 +14,12 @@ class OngController extends Controller
         $ongs = Ong::orderBy('created_at', 'desc')->paginate(10);
         return view ('ongs.index', compact('ongs'))->with('paginate', true);
     }
+
+    // Aprova o cadastro de uma ONG
+    public function aprovar(Request $request, String $id)
+    {
+        $ong = Ong::find($id);
+        $ong->update(['situacao' => true]);
+        return redirect()->route('ongs.index');
+    }
 }
