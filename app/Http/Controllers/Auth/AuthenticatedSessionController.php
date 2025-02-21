@@ -26,13 +26,15 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $credenciais = $request->only('email', 'password');
-
         if(Auth::guard('web')->attempt($credenciais)) {
             return redirect()->route('dashboard');
         } else if(Auth::guard('ong')->attempt($credenciais)) {
+            if(Auth::guard('ong')->user()->status == false){
+                return back()->withErrors(['email' => 'Ong reprovada ou aguardando aprovação!']);
+            }
             return redirect()->route('ong.dashboard');
         } else {
-            return back()->withErrors(['email' => 'Credenciais inválidas']);
+            return back()->withErrors(['email' => 'Credenciais inválidas!']);
         }
     }
 
