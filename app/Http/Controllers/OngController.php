@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Ong;
 use Illuminate\Http\Request;
+use App\Models\Endereco;
 
 class OngController extends Controller
 {
@@ -15,11 +16,44 @@ class OngController extends Controller
         return view ('ongs.index', compact('ongs'))->with('paginate', true);
     }
 
-    // Aprova o cadastro de uma ONG
-    public function aprovar(Request $request, String $id)
+    // Alterar o status do cadastro de uma ONG específica
+    public function alterarStatus(String $id)
     {
         $ong = Ong::find($id);
-        $ong->update(['status' => true]);
+
+        if($ong->status == 1) {
+            $ong->update(['status' => 0]);
+        } else {
+            $ong->update(['status' => 1]);
+        }
+
         return redirect()->route('ongs.index');
+    }
+
+    // Cadastra uma nova ONG
+    public function create(Request $request)
+    {
+        $endereco = Endereco::create($request->all());
+        $request['endereco_id'] = $endereco->id;
+        Ong::create($request->all());
+        return view('ongs.create'); // Alterar
+    }
+
+    // Atualiza cadastro
+    public function update(Request $request)
+    {
+        $ong = Ong::find(auth()->user()->id);
+        $endereco = $ong->endereco_id;
+        $ong->update($request->all());
+        $endereco->update($request->all());
+        return redirect()->route('ongs.index'); // Alterar
+    }
+
+    // Deleta a própria ONG
+    public function destroy()
+    {
+        $ong = Ong::find(auth()->user()->id);
+        $ong->delete();
+        return redirect()->route('ongs.index'); // Alterar
     }
 }
