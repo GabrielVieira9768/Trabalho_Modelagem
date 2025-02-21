@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use DeepCopy\f001\A;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Ong extends Model
+class Ong extends Authenticatable
 {
     use HasFactory;
 
@@ -24,7 +26,6 @@ class Ong extends Model
         'descricao',
         'logo',
         'documento',
-        'status',
         'endereco_id',
     ];
 

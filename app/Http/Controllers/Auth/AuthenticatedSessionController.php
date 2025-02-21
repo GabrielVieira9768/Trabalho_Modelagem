@@ -25,11 +25,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $credenciais = $request->only('email', 'password');
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if(Auth::guard('web')->attempt($credenciais)) {
+            return redirect()->route('dashboard');
+        } else if(Auth::guard('ong')->attempt($credenciais)) {
+            return redirect()->route('ong.dashboard');
+        } else {
+            return back()->withErrors(['email' => 'Credenciais inválidas']);
+        }
     }
 
     /**
@@ -37,12 +41,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
-
+        if(Auth::guard('web')->check()) {
+            Auth::guard('web')->logout();
+        } else if(Auth::guard('ong')->check()) {
+            Auth::guard('ong')->logout();
+        }
+        
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login');
     }
 }

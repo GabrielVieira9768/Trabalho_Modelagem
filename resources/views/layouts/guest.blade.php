@@ -16,7 +16,7 @@
     </head>
     <body class="text-gray-900 antialiased bg-cyan-200">
         <div class="min-h-screen flex items-center justify-center">
-            <div class="p-8 rounded-lg w-full max-w-md">
+            <div class="p-8 rounded-lg w-full max-w-5xl">
                 <div class="mt-6">{{ $slot }}</div>
             </div>
         </div>
