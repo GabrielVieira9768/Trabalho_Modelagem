@@ -25,6 +25,7 @@ class User extends Authenticatable
         'data_nascimento',
         'telefone',
         'curriculo',
+        'cargo',
         'endereco_id',
     ];
 
