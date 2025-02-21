@@ -24,7 +24,6 @@ class User extends Authenticatable
         'cpf',
         'data_nascimento',
         'telefone',
-        'cargo',
         'curriculo',
         'endereco_id',
     ];
@@ -48,7 +47,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'data_nascimento' => 'date',
-        'cargo' => 'boolean',
     ];
 
     /**
