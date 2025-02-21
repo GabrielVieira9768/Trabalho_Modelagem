@@ -26,6 +26,7 @@ class Ong extends Authenticatable
         'descricao',
         'logo',
         'documento',
+        'status',
         'endereco_id',
     ];
 

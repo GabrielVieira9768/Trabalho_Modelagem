@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'cpf' => $this->faker->numerify('###.###.###-##'),
             'data_nascimento' => $this->faker->date(),
             'telefone' => $this->faker->phoneNumber(),
+            'cargo' => false,
             'curriculo' => $this->faker->text(),
             'endereco_id' => Endereco::factory(), // Relaciona o usuário a um endereço
             'remember_token' => Str::random(10),
