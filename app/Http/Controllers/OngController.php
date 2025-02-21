@@ -19,7 +19,7 @@ class OngController extends Controller
     public function aprovar(Request $request, String $id)
     {
         $ong = Ong::find($id);
-        $ong->update(['situacao' => true]);
+        $ong->update(['status' => true]);
         return redirect()->route('ongs.index');
     }
 }

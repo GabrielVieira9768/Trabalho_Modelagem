@@ -32,24 +32,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         // Validação de dados
-        $request->validate([
-            // Usuário
-            'nome' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'cpf' => ['required', 'string', 'max:14', 'unique:users'],
-            'data_nascimento' => ['required', 'date'],
-            'curriculo' => ['file', 'mimes:pdf,doc,docx', 'max:2048'],
-
-            // Endereço
-            'cep' => ['required', 'string'],
-            'estado' => ['required', 'string'],
-            'cidade' => ['required', 'string'],
-            'logradouro' => ['required', 'string'],
-            'bairro' => ['required', 'string'],
-            'numero' => ['required', 'string'],
-            'complemento' => ['nullable', 'string'],
-        ]);
+        
 
         $endereco = Endereco::create([
             'cep' => $request->cep,

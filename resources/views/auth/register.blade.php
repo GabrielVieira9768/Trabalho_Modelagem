@@ -18,8 +18,8 @@
 
                 <div class="flex space-x-8">
                     <div class="flex-1">
-                        <label class="block text-lg font-bold mb-3" for="nascimento">Data de Nascimento</label>
-                        <input class="w-full p-3 border rounded" type="date" id="data_nascimento" name="nascimento" required>
+                        <label class="block text-lg font-bold mb-3" for="data_nascimento">Data de Nascimento</label>
+                        <input class="w-full p-3 border rounded" type="date" id="data_nascimento" name="data_nascimento" required>
                     </div>
                     <div class="flex-1">
                         <label class="block text-lg font-bold mb-3" for="telefone">Telefone</label>
@@ -33,23 +33,23 @@
                         <input class="w-full p-3 border rounded" type="text" id="cep" name="cep" required>
                     </div>
                     <div class="flex-1">
-                        <label class="block text-lg font-bold mb-3" for="endereco">Estado</label>
-                        <input class="w-full p-3 border rounded" type="text" id="endereco" name="endereco" required>
+                        <label class="block text-lg font-bold mb-3" for="estado">Estado</label>
+                        <input class="w-full p-3 border rounded" type="text" id="estado" name="estado" required>
                     </div>
                     <div class="flex-1">
-                        <label class="block text-lg font-bold mb-3" for="endereco">Cidade</label>
-                        <input class="w-full p-3 border rounded" type="text" id="endereco" name="endereco" required>
+                        <label class="block text-lg font-bold mb-3" for="cidade">Cidade</label>
+                        <input class="w-full p-3 border rounded" type="text" id="cidade" name="cidade" required>
                     </div>
                 </div>
                 
                 <div class="flex space-x-8">
                     <div class="flex-1">
-                        <label class="block text-lg font-bold mb-3" for="endereco">Logradouro</label>
-                        <input class="w-full p-3 border rounded" type="text" id="endereco" name="endereco" required>
+                        <label class="block text-lg font-bold mb-3" for="logradouro">Logradouro</label>
+                        <input class="w-full p-3 border rounded" type="text" id="logradouro" name="logradouro" required>
                     </div>
                     <div class="flex-1">
-                        <label class="block text-lg font-bold mb-3" for="endereco">Bairro</label>
-                        <input class="w-full p-3 border rounded" type="text" id="endereco" name="endereco" required>
+                        <label class="block text-lg font-bold mb-3" for="bairro">Bairro</label>
+                        <input class="w-full p-3 border rounded" type="text" id="bairro" name="bairro" required>
                     </div>
                 </div>
 
@@ -59,8 +59,8 @@
                         <input class="w-full p-3 border rounded" type="text" id="numero" name="numero" required>
                     </div>
                     <div class="flex-1">
-                        <label class="block text-lg font-bold mb-3" for="endereco">Complemento</label>
-                        <input class="w-full p-3 border rounded" type="text" id="endereco" name="endereco" required>
+                        <label class="block text-lg font-bold mb-3" for="complemento">Complemento</label>
+                        <input class="w-full p-3 border rounded" type="text" id="complemento" name="complemento" required>
                     </div>
                 </div>
 
