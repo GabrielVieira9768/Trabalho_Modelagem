@@ -31,9 +31,7 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login'); // View de Login
 
-Route::get('/ong/cadastro', function () {
-    return view('auth.register-ong');
-})->name('ong.cadastro'); // View de Cadastro de Ongs
+Route::post('/create', [OngController::class, 'create'])->name('ong.create'); // Salvar a Ong no banco de dados
 
 // Rotas exclusivas do Admin
 Route::middleware('auth')->group(function () {
@@ -52,7 +50,6 @@ Route::middleware('ong')->group(function () {
         return view('ong.dashboard');
     })->name('ong.dashboard'); // View do Dashboard da Ong
 
-    Route::post('/create', [OngController::class, 'create'])->name('ong.create'); // Salvar a Ong no banco de dados
     Route::put('/ong/update', [OngController::class, 'update'])->name('ong.update'); // Atualizar seu próprio cadastro
     Route::delete('/ong/delete', [OngController::class, 'destroy'])->name('ong.destroy'); // Deletar sua própria conta
     
