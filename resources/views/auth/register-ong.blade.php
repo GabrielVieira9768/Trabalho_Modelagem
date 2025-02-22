@@ -2,7 +2,7 @@
     <div class="min-h-screen flex items-center justify-center">
         <div class="bg-gray-200 p-12 rounded-lg shadow-lg w-full max-w-7xl"> <!-- Largura aumentada -->
             <h2 class="text-center text-3xl font-bold mb-6">Criar Conta</h2>
-            <form method="POST" action="{{ route('register') }}" class="space-y-8">
+            <form method="POST" action="{{ route('ong.create') }}" class="space-y-8">
                 @csrf
                 
                 <div class="flex space-x-8">
@@ -20,11 +20,11 @@
                     <div class="flex-1">
                         <label class="block text-lg font-bold mb-3" for="categoria">Categoria</label>
                         <select class="w-full p-3 border rounded" id="categoria" name="categoria">
-                            <option value="opcao1">Saúde</option>
-                            <option value="opcao2">Educação</option>
-                            <option value="opcao3">Cultura</option>
-                            <option value="opcao4">Pesquisa</option>
-                            <option value="opcao5">Outra</option>
+                            <option value="Saúde">Saúde</option>
+                            <option value="Educação">Educação</option>
+                            <option value="Cultura">Cultura</option>
+                            <option value="Pesquisa">Pesquisa</option>
+                            <option value="Outra">Outra</option>
                         </select>
                     </div>
                     <div class="flex-1">

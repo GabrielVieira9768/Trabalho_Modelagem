@@ -15,6 +15,7 @@ use App\Http\Controllers\OngController;
 |
 */
 
+// Rota da tela de Login
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -37,6 +38,10 @@ Route::middleware('ong')->group(function () {
 });
 
 // Rotas da Ong
+Route::get('/ong/cadastro', function () {
+    return view('auth.register-ong');
+})->name('ong.cadastro');
+Route::post('/create', [OngController::class, 'create'])->name('ong.create');
 Route::get('/ong', [OngController::class, 'index'])->name('ong.index');
 
 require __DIR__.'/auth.php';
