@@ -22,14 +22,14 @@ class OngController extends Controller
         $endereco = Endereco::create($request->all());
         $request['endereco_id'] = $endereco->id;
         Ong::create($request->all());
-        return redirect()->route('login'); // Alterar
+        return redirect()->route('login');
     }
     
     // Atualiza cadastro
     public function update(Request $request)
     {
         $ong = Ong::find(auth()->user()->id);
-        $endereco = $ong->endereco_id;
+        $endereco = Endereco::find($ong->endereco_id);
         $ong->update($request->all());
         $endereco->update($request->all());
         return redirect()->route('ongs.index'); // Alterar
@@ -40,7 +40,7 @@ class OngController extends Controller
     {
         $ong = Ong::find(auth()->user()->id);
         $ong->delete();
-        return redirect()->route('login'); // Alterar
+        return redirect()->route('login');
     }
 
     // Alterar o status do cadastro de uma ONG específica

@@ -12,19 +12,20 @@ class ProjetoController extends Controller
     public function index()
     {
         $projetos = Projeto::orderBy('created_at', 'desc')->paginate(10);
-        return view('projetos.index')->with('projetos', $projetos);
+        return view('home', compact('projetos'))->with('paginate', true);
     }
 
     // Retorna todos os projetos de uma ONG específica em ordem descendente
     public function projetosOng()
     {
         $projetos = Projeto::where('ong_id', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(10);
-        return view('projetos.index')->with('projetos', $projetos);
+        return view('projetos.index', compact('projetos'))->with('paginate', true);
     }
 
     // Cria um novo projeto
     public function create(Request $request)
     {
+        $request['ong_id'] = auth()->user()->id;
         Projeto::create($request->all());
         return view('projetos.create'); // Alterar
     }
@@ -34,7 +35,7 @@ class ProjetoController extends Controller
     {
         $projeto = Projeto::find($id);
         $projeto->update($request->all());
-        return redirect()->route('projetos.index');
+        return redirect()->route('projetos.index'); // Alterar
     }
 
     // Deleta um projeto específico
@@ -42,6 +43,6 @@ class ProjetoController extends Controller
     {
         $projeto = Projeto::find($id);
         $projeto->delete();
-        return redirect()->route('projetos.index');
+        return redirect()->route('projetos.index'); // Alterar
     }
 }
