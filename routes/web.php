@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OngController;
+use App\Http\Controllers\UserController;
+use Spatie\LaravelIgnition\Http\Requests\UpdateConfigRequest;
+use App\Http\Controllers\ProjetoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +20,7 @@ use App\Http\Controllers\OngController;
 
 // Rotas comuns a todos os usuários
 Route::get('/', function () {
-    return view('home');
+    return view('home'); // Alterar
 })->name('home'); // View da Página Inicial
 
 Route::get('/homePage', function () {
@@ -40,7 +43,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/ongs', [OngController::class, 'index'])->name('ong.index')->can('ehAdmin', 'App\Models\User'); // View que exibe todas as Ongs
 
-    Route::get('/ongs/{ong}/status', [OngController::class, 'alteraStatus'])->name('ong.status')->can('ehAdmin', 'App\Models\User'); // Alterar o status de uma Ong específica
+    Route::put('/ongs/{ong}/status', [OngController::class, 'alteraStatus'])->name('ong.status')->can('ehAdmin', 'App\Models\User'); // Alterar o status de uma Ong específica
 });
 
 // Rotas exclusivas da Ong
@@ -50,8 +53,13 @@ Route::middleware('ong')->group(function () {
     })->name('ong.dashboard'); // View do Dashboard da Ong
 
     Route::post('/create', [OngController::class, 'create'])->name('ong.create'); // Salvar a Ong no banco de dados
-
+    Route::put('/ong/update', [OngController::class, 'update'])->name('ong.update'); // Atualizar seu próprio cadastro
     Route::delete('/ong/delete', [OngController::class, 'destroy'])->name('ong.destroy'); // Deletar sua própria conta
+    
+    Route::get('/ong/projetos', [ProjetoController::class, 'projetosOng'])->name('projetos.ong'); // Projetos de uma Ong específica
+    Route::post('/ong/projetos/create', [ProjetoController::class, 'create'])->name('projetos.create'); // Criar um novo projeto
+    Route::put('/ong/projetos/{projeto}', [ProjetoController::class, 'update'])->name('projetos.update'); // Atualizar um projeto
+    Route::delete('/ong/projetos/{projeto}', [ProjetoController::class, 'destroy'])->name('projetos.destroy'); // Deletar um projeto
 });
 
 // Rotas exclusivas do Voluntário
@@ -60,10 +68,11 @@ Route::middleware('auth')->group(function () {
         return view('voluntario.dashboard');
     })->name('voluntario.dashboard')->can('ehVoluntario', 'App\Models\User'); // View do Dashboard do Voluntário
 
+    Route::post('/voluntario/inscrever/{projeto}', [UserController::class, 'inscrever'])->name('inscrever')->can('ehVoluntario', 'App\Models\User'); // Inscrever-se em um projeto
+    Route::post('/voluntario/cancelar/{projeto}', [UserController::class, 'cancelarInscricao'])->name('cancelar')->can('ehVoluntario', 'App\Models\User'); // Cancelar inscrição em um projeto
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->can('ehVoluntario', 'App\Models\User'); // View de Edição de Perfil
-
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->can('ehVoluntario', 'App\Models\User'); // Atualizar seu perfil
-
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->can('ehVoluntario', 'App\Models\User'); // Deletar sua própria conta
 });
 
