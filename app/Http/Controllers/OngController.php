@@ -44,7 +44,7 @@ class OngController extends Controller
     }
 
     // Alterar o status do cadastro de uma ONG específica
-    public function alterarStatus(String $id)
+    public function alteraStatus(String $id)
     {
         $ong = Ong::find($id);
 

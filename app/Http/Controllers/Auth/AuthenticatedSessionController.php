@@ -26,9 +26,11 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $credenciais = $request->only('email', 'password');
-        if(Auth::guard('web')->attempt($credenciais)) {
-            return redirect()->route('dashboard');
-        } else if(Auth::guard('ong')->attempt($credenciais)) {
+        if(Auth::guard('web')->attempt($credenciais) && Auth::guard('web')->user()->cargo) {
+            return redirect()->route('admin.dashboard');
+        } else if(Auth::guard('web')->attempt($credenciais) && !Auth::guard('web')->user()->cargo) {
+            return redirect()->route('voluntario.dashboard');
+        }else if(Auth::guard('ong')->attempt($credenciais)) {
             if(Auth::guard('ong')->user()->status == false){
                 return back()->withErrors(['email' => 'Ong reprovada ou aguardando aprovação!']);
             }
