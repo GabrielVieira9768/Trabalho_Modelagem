@@ -12,13 +12,13 @@
                 <button
                     onclick="selecionarTipo('ong')"
                     id="btnOng"
-                    class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-l-lg hover:bg-blue-700 transition duration-300">
+                    class="px-6 py-3 bg-[#256aa5] text-white font-semibold rounded-l-lg hover:bg-[#256aa5] transition duration-300">
                     ONG/Projeto
                 </button>
                 <button
                     onclick="selecionarTipo('voluntario')"
                     id="btnVoluntario"
-                    class="px-6 py-3 bg-gray-300 text-white font-semibold rounded-r-lg hover:bg-gray-400 transition duration-300">
+                    class="px-6 py-3 bg-[#256aa5] text-white font-semibold rounded-r-lg hover:bg-gray-400 transition duration-300">
                     Voluntário
                 </button>
             </div>
@@ -218,7 +218,7 @@
 
         <!-- Formulário de Cadastro para Voluntário -->
         <div id="formVoluntario" class="hidden">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Cadastro Voluntário</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Cadastro Voluntário</h2>
             <form method="POST" action="{{ route('register') }}" class="space-y-6">
                 @csrf
 
