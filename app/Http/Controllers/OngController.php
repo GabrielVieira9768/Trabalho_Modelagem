@@ -16,29 +16,15 @@ class OngController extends Controller
         return view ('ongs.index', compact('ongs'))->with('paginate', true);
     }
 
-    // Alterar o status do cadastro de uma ONG específica
-    public function alterarStatus(String $id)
-    {
-        $ong = Ong::find($id);
-
-        if($ong->status == 1) {
-            $ong->update(['status' => 0]);
-        } else {
-            $ong->update(['status' => 1]);
-        }
-
-        return redirect()->route('ongs.index');
-    }
-
     // Cadastra uma nova ONG
     public function create(Request $request)
     {
         $endereco = Endereco::create($request->all());
         $request['endereco_id'] = $endereco->id;
         Ong::create($request->all());
-        return view('ongs.create'); // Alterar
+        return redirect()->route('login'); // Alterar
     }
-
+    
     // Atualiza cadastro
     public function update(Request $request)
     {
@@ -54,6 +40,20 @@ class OngController extends Controller
     {
         $ong = Ong::find(auth()->user()->id);
         $ong->delete();
-        return redirect()->route('ongs.index'); // Alterar
+        return redirect()->route('login'); // Alterar
+    }
+
+    // Alterar o status do cadastro de uma ONG específica
+    public function alterarStatus(String $id)
+    {
+        $ong = Ong::find($id);
+
+        if($ong->status == 1) {
+            $ong->update(['status' => 0]);
+        } else {
+            $ong->update(['status' => 1]);
+        }
+
+        return redirect()->route('ongs.index');
     }
 }

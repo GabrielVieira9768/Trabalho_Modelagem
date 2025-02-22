@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->String('cnpj')->unique();
             $table->String('telefone');
-            $table->enum('categoria', ['opcao1', 'opcao2', 'opcao3', 'opcao4', 'opcao5']);
+            $table->enum('categoria', ['Saúde', 'Educação', 'Cultura', 'Pesquisa', 'Outra']);
             $table->String('descricao');
             $table->String('logo');
             $table->String('documento');
