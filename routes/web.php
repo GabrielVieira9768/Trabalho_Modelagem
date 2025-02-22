@@ -43,11 +43,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware('ong')->group(function () {
     Route::get('/ong/dashboard', function () {
         return view('ong.dashboard');
-    })->name('ong.dashboard')->can('ehOng', 'App\Models\Ong'); // View do Dashboard da Ong
+    })->name('ong.dashboard'); // View do Dashboard da Ong
 
-    Route::post('/create', [OngController::class, 'create'])->name('ong.create')->can('ehOng', 'App\Models\Ong'); // Salvar a Ong no banco de dados
+    Route::post('/create', [OngController::class, 'create'])->name('ong.create'); // Salvar a Ong no banco de dados
 
-    Route::delete('/ong/delete', [OngController::class, 'destroy'])->name('ong.destroy')->can('ehOng', 'App\Models\Ong'); // Deletar sua própria conta
+    Route::delete('/ong/delete', [OngController::class, 'destroy'])->name('ong.destroy'); // Deletar sua própria conta
 });
 
 // Rotas exclusivas do Voluntário
