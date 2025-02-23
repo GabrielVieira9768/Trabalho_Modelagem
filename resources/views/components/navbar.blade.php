@@ -4,7 +4,7 @@
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo e Nome do Sistema -->
         <div class="flex items-center space-x-3">
-            <a href="/" class="text-white text-2xl font-bold">VoluntSystem</a>
+            <a href="{{ route('home') }}" class="text-white text-2xl font-bold">VoluntSystem</a>
         </div>
 
         <!-- Links de Navegação -->

@@ -23,10 +23,6 @@ Route::get('/', function () {
     return view('home'); // Alterar
 })->name('home'); // View da Página Inicial
 
-Route::get('/homePage', function () {
-    return view('auth.home');
-})->name('home'); // View da Página Inicial
-
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login'); // View de Login
