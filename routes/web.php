@@ -31,6 +31,8 @@ Route::get('/ong/cadastro', function () {
     return view('auth.register-ong');
 })->name('ong.cadastro'); // View de Cadastro de Ongs
 
+
+
 // Rotas exclusivas do Admin
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -52,6 +54,7 @@ Route::middleware('ong')->group(function () {
     Route::put('/ong/update', [OngController::class, 'update'])->name('ong.update'); // Atualizar seu próprio cadastro
     Route::delete('/ong/delete', [OngController::class, 'destroy'])->name('ong.destroy'); // Deletar sua própria conta
     
+    Route::post('/ong/cadastro', [OngController::class, 'store'])->name('ong.store'); //Criar uma ong nova
     Route::get('/ong/projetos', [ProjetoController::class, 'projetosOng'])->name('projetos.ong'); // Projetos de uma Ong específica
     Route::post('/ong/projetos/create', [ProjetoController::class, 'create'])->name('projetos.create'); // Criar um novo projeto
     Route::put('/ong/projetos/{projeto}', [ProjetoController::class, 'update'])->name('projetos.update'); // Atualizar um projeto
@@ -63,7 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/voluntario/dashboard', function () {
         return view('voluntario.dashboard');
     })->name('voluntario.dashboard')->can('ehVoluntario', 'App\Models\User'); // View do Dashboard do Voluntário
-
+    
+    Route::post('/cadastro', [UserController::class, 'store'])->name('cadastro'); // Criar um voluntario novo
     Route::post('/voluntario/inscrever/{projeto}', [UserController::class, 'inscrever'])->name('inscrever')->can('ehVoluntario', 'App\Models\User'); // Inscrever-se em um projeto
     Route::post('/voluntario/cancelar/{projeto}', [UserController::class, 'cancelarInscricao'])->name('cancelar')->can('ehVoluntario', 'App\Models\User'); // Cancelar inscrição em um projeto
 
