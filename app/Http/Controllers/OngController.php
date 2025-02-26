@@ -28,8 +28,6 @@ class OngController extends Controller
             'telefone' => 'nullable|string|max:15',
             'categoria' => 'nullable|string|max:255',
             'descricao' => 'nullable|string',
-            'logo' => 'nullable|string',
-            'documento' => 'nullable|string',
             'rua' => 'required|string|max:255',
             'numero' => 'required|string|max:10',
             'bairro' => 'required|string|max:255',
@@ -63,7 +61,7 @@ class OngController extends Controller
             'descricao' => $request->descricao,
             'logo' => $request->logo,
             'documento' => $request->documento,
-            'status' => 1, // Ativando por padrão
+            'status' => 0,
             'endereco_id' => $endereco->id,
         ]);
     

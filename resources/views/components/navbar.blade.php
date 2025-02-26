@@ -9,6 +9,7 @@
 
         <!-- Links de Navegação -->
         <div class="space-x-4">
+            <a href="{{ route('home') }}" class="text-white hover:text-blue-200 font-semibold">Home</a>
             <a href="{{ route('register') }}" class="text-white hover:text-blue-200 font-semibold">Criar Conta</a>
             <a href="{{ route('login') }}" class="text-white hover:text-blue-200 font-semibold">Login</a>
         </div>

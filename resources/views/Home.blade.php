@@ -27,37 +27,21 @@
 
         <!-- Seção de Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            @foreach ($projetos as $projeto)
             <!-- Card 1 -->
             <div class="bg-[#fff] shadow-lg rounded-lg text-center overflow-hidden">
                 <img src="{{ asset('images/project.png') }}" alt="Imagem Card 1" class="w-full h-60 object-cover">
                 <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-900">Projeto 1</h3>
-                    <p class="text-[#256aa5] mt-2">Encontre oportunidades de voluntariado que combinam com você.</p>
+                    <h3 class="text-2xl font-bold text-gray-900">{{ $projeto->nome }}</h3>
+                    <p class="text-[#256aa5] mt-2">{{ $projeto->descricao }}</p>
                 </div>
             </div>
-
-            <!-- Card 2 -->
-            <div class="bg-[#fff] shadow-lg rounded-lg text-center overflow-hidden">
-                <img src="{{ asset('images/project.png') }}" alt="Imagem Card 2" class="w-full h-60 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-900">Projeto 2</h3>
-                    <p class="text-[#256aa5] mt-2">Participe de projetos que fazem a diferença na sociedade.</p>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="bg-[#fff] shadow-lg rounded-lg text-center overflow-hidden">
-                <img src="{{ asset('images/project.png') }}" alt="Imagem Card 3" class="w-full h-60 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-900">Projeto 3</h3>
-                    <p class="text-[#256aa5] mt-2">Ajude a construir um mundo melhor através do voluntariado.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <!-- Botão Ver Tudo -->
         <div class="mt-12 mb-20">
-            <a href="#" class="bg-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-600 transition">Ver tudo</a>
+            <a href="#" class="bg-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-600 transition">Mais Projetos</a>
         </div>
     </div>
 

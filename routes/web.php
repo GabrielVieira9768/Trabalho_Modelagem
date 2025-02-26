@@ -18,10 +18,8 @@ use App\Http\Controllers\ProjetoController;
 |
 */
 
-// Rotas comuns a todos os usuários
-Route::get('/', function () {
-    return view('home'); // Alterar
-})->name('home'); // View da Página Inicial
+//home 
+Route::get('/', [ProjetoController::class, 'home'])->name('home'); // View da Página Inicial
 
 Route::get('/login', function () {
     return view('auth.login');
