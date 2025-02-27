@@ -47,13 +47,10 @@
                                     Nome
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Local
+                                    Categoria
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Data
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Descrição
+                                    Status
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     <span class="sr-only">Opções</span>
@@ -61,32 +58,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    1
-                                </th>
-                                <td class="px-6 py-4">
-                                    Nome Projeto
-                                </td>
-                                <td class="px-6 py-4">
-                                    Juiz de Fora
-                                </td>
-                                <td class="px-6 py-4">
-                                    22/10/25
-                                </td>
-                                <td class="px-6 py-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum ducimus architecto illum!
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" data-modal-target="aprovar-ong" data-modal-toggle="aprovar-ong">Aprovar</button> <!-- Botão azul -->
-                                    <form>
-                                        @csrf
-                                        <x-modal-container hidden="false" idModal="aprovar-ong" title="Aprovar Projeto" accept="Aprovar" cancel="Reprovar">
-                                            @include('admin.components.ong.aprovar-ong')
-                                        </x-modal-container>
-                                    </form>
-                                </td>
-                            </tr>
+                            @foreach ($ongs as $ong)
+                                <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        {{ $ong->id }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $ong->nome }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $ong->categoria }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $ong->status == 1 ? 'Aprovado' : 'Em revisão' }}
+                                    </td>                                    
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" data-modal-target="aprovar-ong" data-modal-toggle="aprovar-ong">Alterar</button> <!-- Botão azul -->
+                                        <form action="{{ route('ong.status', $ong->id) }}" method="POST">
+                                            @csrf
+                                            <x-modal-container hidden="" idModal="aprovar-ong" title="Alterar Status" accept="Alterar" cancel="Cancelar">
+                                                @include('admin.components.ong.aprovar-ong')
+                                            </x-modal-container>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -112,20 +108,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($users as $user)
                             <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                    1
+                                    {{ $user->id }}
                                 </th>
                                 <td class="px-6 py-4">
-                                    João da Silva
+                                    {{ $user->nome }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    joao.silva@gmail.com
+                                    {{ $user->email }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    123.456.789-99
+                                    {{ $user->cpf }}
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

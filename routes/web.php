@@ -30,13 +30,11 @@ Route::get('/projetos', [ProjetoController::class, 'index'])->name('projetos.ind
 
 // Rotas exclusivas do Admin
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard')->can('ehAdmin', 'App\Models\User'); // View do Dashboard do Admin
+    Route::get('/dashboard', [UserController::class, 'indexAdmin'])->name('admin.dashboard'); // View do Dashboard do Voluntário
 
     Route::get('/ongs', [OngController::class, 'index'])->name('ong.index')->can('ehAdmin', 'App\Models\User'); // View que exibe todas as Ongs
 
-    Route::put('/ongs/{ong}/status', [OngController::class, 'alteraStatus'])->name('ong.status')->can('ehAdmin', 'App\Models\User'); // Alterar o status de uma Ong específica
+    Route::post('/ongs/{ong}/status', [OngController::class, 'alteraStatus'])->name('ong.status')->can('ehAdmin', 'App\Models\User'); // Alterar o status de uma Ong específica
 });
 
 // Rotas exclusivas da Ong
@@ -53,13 +51,11 @@ Route::middleware('ong')->group(function () {
 
 // Rotas exclusivas do Voluntário
 Route::middleware('auth')->group(function () {
-    Route::get('/voluntario/dashboard', function () {
-        return view('voluntario.dashboard');
-    })->name('voluntario.dashboard')->can('ehVoluntario', 'App\Models\User'); // View do Dashboard do Voluntário
+    Route::get('/voluntario/dashboard', [UserController::class, 'index'])->name('voluntario.dashboard'); // View do Dashboard do Voluntário
     
     Route::post('/cadastro', [UserController::class, 'store'])->name('cadastro'); // Criar um voluntario novo
     Route::post('/voluntario/inscrever/{projeto}', [UserController::class, 'inscrever'])->name('inscrever')->can('ehVoluntario', 'App\Models\User'); // Inscrever-se em um projeto
-    Route::post('/voluntario/cancelar/{projeto}', [UserController::class, 'cancelarInscricao'])->name('cancelar')->can('ehVoluntario', 'App\Models\User'); // Cancelar inscrição em um projeto
+    Route::delete('/voluntario/cancelar/{projeto}', [UserController::class, 'cancelarInscricao'])->name('cancelar')->can('ehVoluntario', 'App\Models\User'); // Cancelar inscrição em um projeto
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->can('ehVoluntario', 'App\Models\User'); // View de Edição de Perfil
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->can('ehVoluntario', 'App\Models\User'); // Atualizar seu perfil
