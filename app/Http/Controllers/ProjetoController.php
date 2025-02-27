@@ -16,6 +16,13 @@ class ProjetoController extends Controller
         return view('projetos', compact('projetos'));
     }
 
+    // Retorna um projeto específico para ser exibido na view
+    public function indexIndividual(String $id)
+    {
+        $projeto = Projeto::find($id);
+        return view('projeto-individual', compact('projeto'));
+    }
+
     // Retorna os 3 projetos mais recentes para serem exibidos na home
     public function home()
     {
