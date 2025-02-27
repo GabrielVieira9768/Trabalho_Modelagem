@@ -27,7 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('endereco_id'); // Chave Estrangeira
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
+            //$table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
 
         });
 
