@@ -21,12 +21,14 @@ return new class extends Migration
             $table->String('telefone');
             $table->enum('categoria', ['Saúde', 'Educação', 'Cultura', 'Pesquisa', 'Outra']);
             $table->String('descricao');
-            $table->String('logo');
+            $table->string('logo');
             $table->String('documento');
             $table->boolean('status')->default(false);
             $table->unsignedBigInteger('endereco_id'); // Chave Estrangeira
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
+
         });
 
         Schema::table('projetos', function (Blueprint $table) {
