@@ -36,9 +36,9 @@ class ProjetoController extends Controller
     // Cria um novo projeto
     public function create(Request $request)
     {
-        $request['ong_id'] = auth()->user()->id;
+        $request['ong_id'] = Auth::guard('ong')->user()->id;
         Projeto::create($request->all());
-        return view('projetos.create'); // Alterar
+        return redirect()->route('ong.dashboard'); // Alterar
     }
 
     // Atualiza um projeto específico
@@ -46,7 +46,7 @@ class ProjetoController extends Controller
     {
         $projeto = Projeto::find($id);
         $projeto->update($request->all());
-        return redirect()->route('projetos.index'); // Alterar
+        return redirect()->route('ong.dashboard'); // Alterar
     }
 
     // Deleta um projeto específico
@@ -54,6 +54,6 @@ class ProjetoController extends Controller
     {
         $projeto = Projeto::find($id);
         $projeto->delete();
-        return redirect()->route('projetos.index'); // Alterar
+        return redirect()->route('ong.dashboard'); // Alterar
     }
 }

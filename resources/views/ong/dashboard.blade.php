@@ -23,23 +23,22 @@
 
             <h2 class="text-4xl font-bold text-gray-900 mt-30 mb-8 text-center">Projetos Criados</h2>
 
-            <div class="text-right">
-                <button type="button" data-modal-target="adicionar-projeto" data-modal-toggle="adicionar-projeto"
-                    class="mb-4 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
-                    Adicionar
-                </button>
-
-            </div>
-
-            <form>
-                @csrf
-                <x-modal-container hidden="false" idModal="adicionar-projeto" title="Adicionar" accept="Criar" cancel="Cancelar">
-                    @include('ong.components.adicionar')
-                </x-modal-container>
-            </form>
-
-
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            
+            
+            <div class="relative overflow-x-auto sm:rounded-lg">
+                <div class="text-right">
+                    <button data-modal-target="adicionar-projeto" data-modal-toggle="adicionar-projeto"
+                        class="mb-4 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                        Adicionar
+                    </button>
+                </div>
+                
+                <form action="{{ route('projetos.create')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <x-modal-container hidden="false" idModal="adicionar-projeto" title="Adicionar" accept="Criar" cancel="Cancelar">
+                        @include('ong.components.adicionar')
+                    </x-modal-container>
+                </form>
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -75,10 +74,11 @@
                             <td class="px-6 py-4">
                                 {{ $projeto->data }}
                             </td>
-                            <td class="px-6 py-4 text-right">
+                            <td class="px-6 py-4">
                                 <button data-modal-target="editar-projeto-{{$projeto->id}}" data-modal-toggle="editar-projeto-{{$projeto->id}}">Editar</button>
-                                <form>
+                                <form action="{{ route('projetos.update', $projeto->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    @method('put')
                                     <x-modal-container hidden="false" idModal="editar-projeto-{{$projeto->id}}" title="Editar Projeto" accept="Salvar" cancel="Cancelar">
                                         @include('ong.components.editar-projeto')
                                     </x-modal-container>
