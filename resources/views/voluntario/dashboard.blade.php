@@ -43,29 +43,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                1
-                            </th>
-                            <td class="px-6 py-4">
-                                Projeto Nome
-                            </td>
-                            <td class="px-6 py-4">
-                                Juiz de Fora
-                            </td>
-                            <td class="px-6 py-4">
-                                22/10/25
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" data-modal-target="cancelar-inscricao" data-modal-toggle="cancelar-inscricao">Cancelar Inscrição</button>
-                                <form>
-                                    @csrf
-                                    <x-modal-container hidden="false" idModal="cancelar-inscricao" title="Editar Projeto" accept="Sim" cancel="Não">
-                                        @include('voluntario.components.cancelar-inscricao')
-                                    </x-modal-container>
-                                </form>
-                            </td>
-                        </tr>
+                        @foreach ($inscricoes as $inscricao)
+                            <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    {{ $inscricao->id }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ App\Models\Projeto::find($inscricao->projeto_id)->nome }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ App\Models\Projeto::find($inscricao->projeto_id)->local }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $inscricao->created_at->format('d/m/Y') }}
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" data-modal-target="cancelar-inscricao" data-modal-toggle="cancelar-inscricao">Cancelar Inscrição</button>
+                                    <form action="{{ route('cancelar', $inscricao->id) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <x-modal-container hidden="false" idModal="cancelar-inscricao" title="Editar Projeto" accept="Sim" cancel="Não">
+                                            @include('voluntario.components.cancelar-inscricao')
+                                        </x-modal-container>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

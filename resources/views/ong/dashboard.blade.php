@@ -20,7 +20,7 @@
 
             <h2 class="text-4xl font-bold text-gray-900 mt-30 mb-8 text-center">Projetos Criados</h2>
 
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="relative overflow-x-auto sm:rounded-lg">
                 <div class="text-right">
                     <button data-modal-target="adicionar" data-modal-toggle="adicionar"
                         class="mb-4 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">

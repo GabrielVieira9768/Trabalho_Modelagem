@@ -55,6 +55,6 @@ class OngController extends Controller
             $ong->update(['status' => 1]);
         }
 
-        return redirect()->route('ongs.index');
+        return redirect()->route('admin.dashboard');
     }
 }

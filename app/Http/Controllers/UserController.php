@@ -4,10 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Inscricao;
+use App\Models\User;
+use App\Models\Ong;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function indexAdmin()
+    {
+        $ongs = Ong::all();
+        $users = User::all();
+        return view('admin.dashboard', compact('ongs', 'users'));
+    }
+
+    public function index()
+    {
+        $inscricoes = Inscricao::where('user_id', auth()->user()->id)->get();
+        return view('voluntario.dashboard', compact('inscricoes'));
+    }
+
     // Realizar iscrição em um projeto
     public function inscrever(String $id)
     {
@@ -21,8 +36,8 @@ class UserController extends Controller
     // Cancelar inscrição em um projeto
     public function cancelarInscricao(String $id)
     {
-        $inscricao = Inscricao::where('user_id', auth()->user()->id)->where('projeto_id', $id)->first();
-        $inscricao->delete();
+        $inscricoes = Inscricao::find($id);
+        $inscricoes->delete();
         return redirect()->route('voluntario.dashboard');
     }
 }
