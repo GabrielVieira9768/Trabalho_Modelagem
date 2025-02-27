@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Projeto;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProjetoController extends Controller
 {
@@ -43,9 +44,24 @@ class ProjetoController extends Controller
     // Cria um novo projeto
     public function create(Request $request)
     {
-        $request['ong_id'] = Auth::guard('ong')->user()->id;
-        Projeto::create($request->all());
-        return redirect()->route('ong.dashboard'); // Alterar
+        $request->validate([
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validação da imagem
+        ]);
+
+        $dados = $request->all();
+        $dados['ong_id'] = Auth::guard('ong')->user()->id;
+
+        // Verifica se há um arquivo de imagem
+        if ($request->hasFile('imagem')) {
+            $imagem = $request->file('imagem');
+            $nomeImagem = time() . '_' . $imagem->getClientOriginalName(); // Gera um nome único
+            $caminho = $imagem->storeAs('public/projetos', $nomeImagem); // Salva a imagem
+
+            $dados['imagem'] = $nomeImagem; // Salva o nome no banco
+        }
+
+        Projeto::create($dados);
+        return redirect()->route('ong.dashboard'); // Alterar se necessário
     }
 
     // Atualiza um projeto específico

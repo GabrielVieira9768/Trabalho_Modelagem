@@ -13,10 +13,10 @@
         <!-- Card 1 -->
         @foreach ($projetos as $projeto)
             <div class="bg-[#fff] shadow-lg rounded-lg text-center overflow-hidden">
-                <img src="{{ asset('images/project.png') }}" alt="Imagem Card 1" class="w-full h-60 object-cover">
+                <img src="{{ $projeto->imagem ? asset('storage/projetos/' . $projeto->imagem) : asset('storage/projetos/project.png') }}" alt="{{ $projeto->nome }}" class="w-full h-60 object-cover">
                 <div class="p-6">
                     <h3 class="text-2xl font-bold text-gray-900">{{ $projeto->nome }}</h3>
-                    <p class="text-[#256aa5] mt-2">{{ $projeto->descricao }}</p>
+                    <p class="text-[#256aa5] mt-2">{{ \Illuminate\Support\Str::limit($projeto->descricao, 100, '...') }}</p>
                     @auth
                         <form action="{{route('inscrever', $projeto->id)}}" method="Post">
                             @csrf

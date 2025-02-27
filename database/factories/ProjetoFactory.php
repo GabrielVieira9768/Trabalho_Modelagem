@@ -20,7 +20,7 @@ class ProjetoFactory extends Factory
         return [
             'nome' => $this->faker->word(),
             'data' => $this->faker->date(),
-            'imagem' => $this->faker->imageUrl(),
+            'imagem' => 'project.png',
             'local' => $this->faker->city(),
             'descricao' => $this->faker->text(),
             'vagas' => $this->faker->numberBetween(1, 100),
