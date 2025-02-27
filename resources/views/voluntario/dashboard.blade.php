@@ -22,8 +22,8 @@
             <h2 class="text-4xl font-bold text-gray-900 mt-30 mb-8 text-center">Projetos Inscritos</h2>
         
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 bg-gray-300">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-250">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 Id
@@ -43,8 +43,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 1
                             </th>
                             <td class="px-6 py-4">
@@ -57,7 +57,7 @@
                                 22/10/25
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <button data-modal-target="cancelar-inscricao" data-modal-toggle="cancelar-inscricao">Cancelar Inscrição</button>
+                                <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" data-modal-target="cancelar-inscricao" data-modal-toggle="cancelar-inscricao">Cancelar Inscrição</button>
                                 <form>
                                     @csrf
                                     <x-modal-container hidden="false" idModal="cancelar-inscricao" title="Editar Projeto" accept="Sim" cancel="Não">
