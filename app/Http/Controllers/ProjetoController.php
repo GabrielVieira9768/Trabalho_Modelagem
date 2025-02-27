@@ -68,9 +68,36 @@ class ProjetoController extends Controller
     public function update(Request $request, String $id)
     {
         $projeto = Projeto::find($id);
-        $projeto->update($request->all());
-        return redirect()->route('ong.dashboard'); // Alterar
+        
+        if (!$projeto) {
+            return redirect()->route('ong.dashboard')->with('error', 'Projeto não encontrado');
+        }
+        
+        $request->validate([
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        
+        $dados = $request->all();
+        
+        // Verifica se há um novo arquivo de imagem
+        if ($request->hasFile('imagem')) {
+            // Remove a imagem antiga, se existir e não for 'project.png'
+            if ($projeto->imagem && $projeto->imagem !== 'project.png') {
+                Storage::delete('public/projetos/' . $projeto->imagem);
+            }
+            
+            $imagem = $request->file('imagem');
+            $nomeImagem = time() . '_' . $imagem->getClientOriginalName();
+            $caminho = $imagem->storeAs('public/projetos', $nomeImagem);
+            
+            $dados['imagem'] = $nomeImagem;
+        }
+        
+        $projeto->update($dados);
+        
+        return redirect()->route('ong.dashboard')->with('success', 'Projeto atualizado com sucesso');
     }
+
 
     // Deleta um projeto específico
     public function destroy(String $id)
