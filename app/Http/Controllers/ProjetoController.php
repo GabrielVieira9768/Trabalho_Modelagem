@@ -13,7 +13,7 @@ class ProjetoController extends Controller
     // Retorna todos os projetos em ordem descendente para serem exibidos na view
     public function index()
     {
-        $projetos = Projeto::orderBy('created_at', 'desc')->get();
+        $projetos = Projeto::orderBy('created_at', 'desc')->paginate(6);
         return view('projetos', compact('projetos'));
     }
 
@@ -34,9 +34,7 @@ class ProjetoController extends Controller
     // Retorna todos os projetos de uma ONG específica em ordem descendente
     public function projetosOng()
     {
-        $projetos = Projeto::where('ong_id', Auth::guard('ong')->user()->id)
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $projetos = Projeto::where('ong_id', Auth::guard('ong')->user()->id)->orderBy('created_at', 'desc')->paginate(5);
 
         return view('ong.dashboard', compact('projetos'));
     }

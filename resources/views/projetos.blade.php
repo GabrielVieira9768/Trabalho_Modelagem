@@ -38,4 +38,5 @@
             </div>
         @endforeach
     </div>
+    <div class="my-4">{{ $projetos->links() }}</div>
 </x-guest-layout>

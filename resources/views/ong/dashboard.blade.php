@@ -95,7 +95,7 @@
                     </tbody>
                 </table>
             </div>
-
+            <div class="my-4">{{ $projetos->links() }}</div>
         </div>
     </div>
 </body>

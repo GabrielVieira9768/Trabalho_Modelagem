@@ -8,10 +8,14 @@ Este projeto é uma plataforma para conectar ONGs e voluntários. As ONGs podem 
 - **Tailwind CSS** (Estilização)
 
 ## 🎯 Funcionalidades
+### Para Admin:
+- Cadastro e autenticação
+- Gerenciamento de ONGs
+- Gerenciamento de voluntários
+
 ### Para ONGs:
 - Cadastro e autenticação
-- Criação, edição e remoção de projetos
-- Gerenciamento de voluntários inscritos
+- Criação e edição de projetos
 
 ### Para Voluntários:
 - Cadastro e autenticação
