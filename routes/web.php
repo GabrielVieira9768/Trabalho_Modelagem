@@ -25,6 +25,10 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login'); // View de Login
 
+Route::get('/projeto', function () {
+    return view('projetos');
+})->name('projeto'); // View de Login
+
 Route::post('/create', [OngController::class, 'create'])->name('ong.create'); // Salvar a Ong no banco de dados
 
 
