@@ -10,8 +10,9 @@
         <!-- Links de Navegação -->
         <div class="space-x-4">
             <!-- Links para Páginas Públicas -->
+            <a href="{{ route('home') }}" class="text-white hover:text-blue-200 font-semibold">Home</a>
+            <a href="{{ route('projetos.index') }}" class="text-white hover:text-blue-200 font-semibold">Projetos</a>
             @guest
-                <a href="{{ route('home') }}" class="text-white hover:text-blue-200 font-semibold">Home</a>
                 <a href="{{ route('register') }}" class="text-white hover:text-blue-200 font-semibold">Criar Conta</a>
                 <a href="{{ route('login') }}" class="text-white hover:text-blue-200 font-semibold">Entrar</a>
             @endguest

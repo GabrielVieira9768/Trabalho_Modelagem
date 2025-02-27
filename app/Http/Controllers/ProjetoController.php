@@ -12,8 +12,8 @@ class ProjetoController extends Controller
     // Retorna todos os projetos em ordem descendente para serem exibidos na view
     public function index()
     {
-        $projetos = Projeto::orderBy('created_at', 'desc')->paginate(10);
-        return view('ong.dashboard', compact('projetos'))->with('paginate', true);
+        $projetos = Projeto::orderBy('created_at', 'desc')->get();
+        return view('projetos', compact('projetos'));
     }
 
     // Retorna os 3 projetos mais recentes para serem exibidos na home

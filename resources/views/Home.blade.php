@@ -41,7 +41,7 @@
 
         <!-- Botão Ver Tudo -->
         <div class="mt-12 mb-20">
-            <a href="#" class="bg-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-600 transition">Mais Projetos</a>
+            <a href="{{ route('projetos.index') }}" class="bg-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-600 transition">Mais Projetos</a>
         </div>
     </div>
 
