@@ -12,7 +12,14 @@ class ProjetoController extends Controller
     public function index()
     {
         $projetos = Projeto::orderBy('created_at', 'desc')->paginate(10);
-        return view('home', compact('projetos'))->with('paginate', true);
+        return view('ong.dashboard', compact('projetos'))->with('paginate', true);
+    }
+
+    // Retorna os 3 projetos mais recentes para serem exibidos na home
+    public function home()
+    {
+        $projetos = Projeto::orderBy('created_at', 'desc')->take(3)->get();
+        return view('home', compact('projetos'));
     }
 
     // Retorna todos os projetos de uma ONG específica em ordem descendente
