@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Projeto;
+use Illuminate\Support\Facades\Auth;
 
 class ProjetoController extends Controller
 {
@@ -25,8 +26,11 @@ class ProjetoController extends Controller
     // Retorna todos os projetos de uma ONG específica em ordem descendente
     public function projetosOng()
     {
-        $projetos = Projeto::where('ong_id', auth()->user()->id)->orderBy('created_at', 'desc')->paginate(10);
-        return view('projetos.index', compact('projetos'))->with('paginate', true);
+        $projetos = Projeto::where('ong_id', Auth::guard('ong')->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('ong.dashboard', compact('projetos'));
     }
 
     // Cria um novo projeto
