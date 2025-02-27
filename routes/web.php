@@ -26,6 +26,7 @@ Route::get('/login', function () {
 })->name('login'); // View de Login
 
 Route::post('/create', [OngController::class, 'create'])->name('ong.create'); // Salvar a Ong no banco de dados
+Route::get('/projetos', [ProjetoController::class, 'index'])->name('projetos.index'); // View que exibe todos os Projetos
 
 // Rotas exclusivas do Admin
 Route::middleware('auth')->group(function () {
