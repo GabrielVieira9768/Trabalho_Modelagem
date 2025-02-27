@@ -1,4 +1,4 @@
-<!-- resources/views/admin/gerenciamento-de-ongs.blade.php -->
+<!-- resources/views/management.blade.php -->
 
 <x-guest-layout>
     <!-- Navbar ocupando a tela inteira -->
@@ -8,21 +8,19 @@
 
     <!-- Conteúdo da Home -->
     <div class="w-full space-y-12 text-black">
-        <h1 class="w-full text-center text-2xl font-bold">Admin</h1>
-
+        <h1 class="w-full text-center text-2xl font-bold">Gerenciamento</h1>
+        
         <section class="mx-auto min-h-screen w-11/12 space-y-16 sm:space-y-32 lg:w-10/12">
-            <div class="flex items-center justify-center">
-                <span class="px-8 py-2 bg-[#726E6E] text-white text-xl cursor-default">ONG</span>
-                <span class="px-8 py-2 bg-[#BDBDBD] text-white text-xl cursor-default">USUÁRIOS</span>
-            </div>
-            
             <!-- Barra de pesquisa -->
-            <div class="flex justify-start items-center text-black">
+            <div class="flex justify-between items-center">
                 <input 
                     type="text" 
-                    class="w-1/3 p-2 border-none rounded-md bg-[#D9D9D9]" 
+                    class="min-w-fit p-2 border-none rounded-md bg-[#D9D9D9]" 
                     placeholder="Pesquisar" 
                 />
+                <button class="min-w-fit p-2 border-none rounded-md bg-[#D9D9D9]">
+                    Criar Novo Projeto
+                </button>
             </div>
 
             <div class="flex flex-col gap-8">
@@ -52,13 +50,17 @@
                         <div class="flex flex-col p-6 space-y-3">
                             <section class="flex justify-between items-center gap-2 flex-wrap">
                                 <div class="flex items-center gap-1">
-                                    <h2 class="text-2xl font-semibold leading-none tracking-tight">Nome da ONG</h2>
+                                    <h2 class="text-2xl font-semibold leading-none tracking-tight">
+                                        Projeto ONG 1
+                                    </h2>
                                     <h2 class="text-2xl font-semibold leading-none tracking-tight">|</h2>
-                                    <h2 class="text-2xl font-semibold leading-none tracking-tight">CPNJ</h2>
+                                    <h2 class="text-2xl font-semibold leading-none tracking-tight">
+                                        Nome da ONG
+                                    </h2>
                                     <h2 class="text-2xl font-semibold leading-none tracking-tight">|</h2>
-                                    <h2 class="text-2xl font-semibold leading-none tracking-tight">Categoria</h2>
-                                    <h2 class="text-2xl font-semibold leading-none tracking-tight">|</h2>
-                                    <h2 class="text-2xl font-semibold leading-none tracking-tight">Email</h2>
+                                    <h2 class="text-2xl font-semibold leading-none tracking-tight">
+                                        01/01/2001
+                                    </h2>
                                 </div>
                                 <button>
                                   <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -67,8 +69,10 @@
                                 </button>
                             </section>
 
-                            <div class="text-sm text-pretty">Juiz de Fora</div>
-                            
+                            <div class="text-sm text-pretty">
+                                Juiz de Fora
+                            </div>
+
                             <div class="text-sm text-pretty line-clamp-4">
                                 Lorem Ipsum é simplesmente um texto fictício da indústria tipográfica e de impressão. 
                                 Ele tem sido o texto padrão desde o século XVI, quando um impressor desconhecido pegou 
@@ -76,12 +80,18 @@
                             </div>
                         </div>
 
-                        <!-- Botões / Implementar Lógica -->
+                        <!-- Botões -->
                         <div class="flex flex-wrap items-center gap-2 justify-between">
-                            <div class="bg-[#39ED4B] px-2 py-1 rounded-md text-sm text-black">Aprovada</div>
+                            <div class="bg-[#ECEAEA] px-2 py-1 rounded-md text-sm text-black">
+                                1 Vaga Restante
+                            </div>
                             <div class="flex items-center gap-3">
-                                <button class="bg-[#FF586C] px-4 py-2 rounded-md text-sm text-black">Negar</button>
-                                <button class="bg-[#39ED4B] px-4 py-2 rounded-md text-sm text-black">Aprovar</button>
+                                <button class="bg-[#18CF2A] px-4 py-2 rounded-md text-sm text-black">
+                                    Relatório
+                                </button>
+                                <button class="bg-[#18CF2A] px-4 py-2 rounded-md text-sm text-black">
+                                    Editar
+                                </button>
                             </div>
                         </div>
                     </section>

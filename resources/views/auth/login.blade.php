@@ -7,6 +7,12 @@
         <div class="bg-gray-100 p-8 rounded-lg shadow-lg w-full max-w-md">
             <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">LOGIN</h2>
 
+            @if (session('success'))
+                <div class="mb-4 p-3 bg-green-200 text-green-800 rounded">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 

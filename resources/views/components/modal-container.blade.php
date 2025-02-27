@@ -2,9 +2,9 @@
     <div class="fixed top-0 right-0 bottom-0 left-0 bg-black opacity-50"></div>
     <div class="relative p-4 w-full max-w-2xl max-h-full">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="relative bg-[#256aa5] rounded-lg shadow ">
             <!-- Modal header -->
-            <div class="flex items-center justify-between bg-[#F78F2C] bg-opacity-70 p-4 md:p-5 border-b rounded-t">
+            <div class="flex items-center justify-between bg-[#a5f3fc] bg-opacity-70 p-4 md:p-5 border-b rounded-t">
                 <h3 class="text-xl font-semibold text-gray-900">
                     {{$title}}
                 </h3>
@@ -20,9 +20,9 @@
                 {{ $slot }}
             </div>
             <!-- Modal footer -->
-            <div class="gap-4 flex items-center justify-end p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button data-modal-hide="{{$idModal}}" type="button" class="py-2.5 uppercase font-bold px-5 ms-3 text-sm text-black focus:outline-none bg-white rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-[#F78F2C] focus:z-10 focus:ring-4 focus:ring-gray-100">{{$cancel}}</button>
-                <button type="submit" class="text-black uppercase font-bold bg-[#F78F2C] bg-opacity-70 hover:bg-[#F78F2C] hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300  rounded-lg text-sm px-5 py-2.5 text-center {{$hidden == "true" ? "hidden" : ""}}">{{$accept}}</button>
+            <div class="gap-4 flex items-center justify-center p-4 md:p-5 border-t border-gray-200 rounded-b">
+                <button data-modal-hide="{{$idModal}}" type="button" class="py-2.5 uppercase font-bold px-5 ms-3 text-sm text-black focus:outline-none bg-white rounded-lg border border-gray-300 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-100">{{$cancel}}</button>
+                <button type="submit" class="text-black uppercase font-bold bg-[#a5f3fc] bg-opacity-70 focus:ring-4 focus:outline-none focus:ring-[#a5f3fc] rounded-lg text-sm px-5 py-2.5 text-center {{$hidden == "true" ? "hidden" : ""}}">{{$accept}}</button>
             </div>
         </div>
     </div>
