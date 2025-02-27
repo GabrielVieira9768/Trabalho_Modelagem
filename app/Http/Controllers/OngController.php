@@ -19,62 +19,11 @@ class OngController extends Controller
     // Cadastra uma nova ONG
     public function create(Request $request)
     {
-        // Valida os dados antes de criar os registros
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:ongs,email',
-            'password' => 'required|string|min:8|confirmed',
-            'cnpj' => 'required|string|max:18|unique:ongs,cnpj',
-            'telefone' => 'nullable|string|max:15',
-            'categoria' => 'nullable|string|max:255',
-            'descricao' => 'nullable|string',
-            'rua' => 'required|string|max:255',
-            'numero' => 'required|string|max:10',
-            'bairro' => 'required|string|max:255',
-            'cidade' => 'required|string|max:255',
-            'estado' => 'required|string|max:2',
-            'cep' => 'required|string|max:9',
-        ]);
-    
-        // Criar endereço primeiro
-        $endereco = Endereco::create([
-            'rua' => $request->rua,
-            'numero' => $request->numero,
-            'bairro' => $request->bairro,
-            'cidade' => $request->cidade,
-            'estado' => $request->estado,
-            'cep' => $request->cep,
-        ]);
-    
-        if (!$endereco) {
-            return back()->withErrors(['error' => 'Falha ao salvar endereço']);
-        }
-    
-        // Criar ONG com a referência do endereço
-        $ong = Ong::create([
-            'nome' => $request->nome,
-            'email' => $request->email,
-            'password' => bcrypt($request->password), // Hash da senha
-            'cnpj' => $request->cnpj,
-            'telefone' => $request->telefone,
-            'categoria' => $request->categoria,
-            'descricao' => $request->descricao,
-            'logo' => $request->logo,
-            'documento' => $request->documento,
-            'status' => 0,
-            'endereco_id' => $endereco->id,
-        ]);
-    
-        if (!$ong) {
-            return back()->withErrors(['error' => 'Falha ao salvar ONG']);
-        }
-    
-        // Redireciona para a página de login com a mensagem de sucesso
-        session()->flash('success', 'ONG cadastrada com sucesso! Agora, faça login para continuar.');
+        $endereco = Endereco::create($request->all());
+        $request['endereco_id'] = $endereco->id;
+        Ong::create($request->all());
         return redirect()->route('login');
     }
-
-
     
     // Atualiza cadastro
     public function update(Request $request)
