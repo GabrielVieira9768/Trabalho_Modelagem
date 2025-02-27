@@ -13,7 +13,7 @@
                     onclick="selecionarTipo('ong')"
                     id="btnOng"
                     class="px-6 py-3 bg-[#256aa5] text-white font-semibold rounded-l-lg hover:bg-[#256aa5] transition duration-300">
-                    ONG/Projeto
+                    ONG
                 </button>
                 <button
                     onclick="selecionarTipo('voluntario')"
@@ -26,14 +26,14 @@
 
         <!-- Formulário de Cadastro para ONG -->
         <div id="formOng">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Cadastro ONG/Projeto</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Cadastro ONG</h2>
             <form method="POST" action="{{ route('ong.create') }}" class="space-y-6">
                 @csrf
 
                 <!-- Nome e CNPJ -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-bold mb-2" for="nome">Nome da ONG/Projeto</label>
+                        <label class="block text-sm font-bold mb-2" for="nome">Nome da ONG</label>
                         <input
                             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             type="text"
