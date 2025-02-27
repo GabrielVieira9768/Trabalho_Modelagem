@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); // Chave Primária
             $table->string('nome');
             $table->date('data');
-            $table->string('imagem');
+            $table->string('imagem')->nullable();
             $table->string('local');
             $table->string('descricao');
             $table->integer('vagas');

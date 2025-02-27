@@ -1,14 +1,14 @@
 <div class="grid gap-4 mb-4">
     <!-- Campo Nome -->
     <div class="col-span-2">
-        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nome</label>
-        <input type="text" name="name" id="team_id" class="bg-white border border-[#256aa5] text-gray-900 text-sm rounded-lg focus:ring-[#256aa5] focus:border-[#256aa5] block w-full p-2.5" placeholder="Nome do Projeto" required>
+        <label for="nome" class="block mb-2 text-sm font-medium text-gray-900">Nome</label>
+        <input type="text" name="nome" id="nome" class="bg-white border border-[#256aa5] text-gray-900 text-sm rounded-lg focus:ring-[#256aa5] focus:border-[#256aa5] block w-full p-2.5" placeholder="Nome do Projeto" required>
     </div>
 
     <!-- Campo Data -->
     <div class="col-span-2">
-        <label for="encarregado" class="block mb-2 text-sm font-medium text-gray-900">Data</label>
-        <input type="date" name="full_name" id="user_id" class="bg-white border border-[#256aa5] text-gray-900 text-sm rounded-lg focus:ring-[#256aa5] focus:border-[#256aa5] block w-full p-2.5" required>
+        <label for="data" class="block mb-2 text-sm font-medium text-gray-900">Data</label>
+        <input type="datetime-local" name="data" id="data" class="bg-white border border-[#256aa5] text-gray-900 text-sm rounded-lg focus:ring-[#256aa5] focus:border-[#256aa5] block w-full p-2.5" required>
     </div>
 
     <!-- Local e Vagas na mesma linha -->

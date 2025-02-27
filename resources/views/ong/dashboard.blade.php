@@ -27,8 +27,8 @@
                         Adicionar
                     </button>
                 </div>
-    
-                <form>
+
+                <form action="{{ route('projetos.create')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <x-modal-container hidden="false" idModal="adicionar" title="Adicionar" accept="Criar" cancel="Cancelar">
                         @include('ong.components.adicionar')
@@ -82,8 +82,9 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" data-modal-target="editar-projeto-{{$projeto->id}}" data-modal-toggle="editar-projeto-{{$projeto->id}}">Editar</button>
-                                <form>
+                                <form action="{{ route('projetos.update', $projeto->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    @method('put')
                                     <x-modal-container hidden="false" idModal="editar-projeto-{{$projeto->id}}" title="Editar Projeto" accept="Salvar" cancel="Cancelar">
                                         @include('ong.components.editar-projeto')
                                     </x-modal-container>

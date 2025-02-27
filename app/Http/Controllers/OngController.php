@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ong;
 use Illuminate\Http\Request;
 use App\Models\Endereco;
+use Illuminate\Support\Facades\Auth;
 
 class OngController extends Controller
 {
@@ -28,7 +29,7 @@ class OngController extends Controller
     // Atualiza cadastro
     public function update(Request $request)
     {
-        $ong = Ong::find(auth()->user()->id);
+        $ong = Ong::find(Auth::guard('ong')->user()->id);
         $endereco = Endereco::find($ong->endereco_id);
         $ong->update($request->all());
         $endereco->update($request->all());
@@ -38,7 +39,7 @@ class OngController extends Controller
     // Deleta a própria ONG
     public function destroy()
     {
-        $ong = Ong::find(auth()->user()->id);
+        $ong = Ong::find(Auth::guard('ong')->user()->id);
         $ong->delete();
         return redirect()->route('login');
     }
