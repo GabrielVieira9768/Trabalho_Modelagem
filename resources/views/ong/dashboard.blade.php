@@ -14,34 +14,33 @@
 <body class="text-gray-900 antialiased bg-cyan-200">
     <div class="min-h-screen flex items-center justify-center">
         <div class="p-8 rounded-lg w-full max-w-5xl">
-            <div class="mt-6">
-
-            </div>
             <div class="w-full h-screen absolute top-0 left-0">
                 @include('components.navbar')
             </div>
 
             <h2 class="text-4xl font-bold text-gray-900 mt-30 mb-8 text-center">Projetos Criados</h2>
 
-            <div class="text-right">
-                <button type="button" data-modal-target="adicionar-projeto" data-modal-toggle="adicionar-projeto"
-                    class="mb-4 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
-                    Adicionar
-                </button>
-
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div class="text-right">
+                    <button data-modal-target="adicionar" data-modal-toggle="adicionar"
+                        class="mb-4 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                        Adicionar
+                    </button>
+                </div>
+    
+                <form>
+                    @csrf
+                    <x-modal-container hidden="false" idModal="adicionar" title="Adicionar" accept="Criar" cancel="Cancelar">
+                        @include('ong.components.adicionar')
+                    </x-modal-container>
+                </form>
             </div>
 
-            <form>
-                @csrf
-                <x-modal-container hidden="false" idModal="adicionar-projeto" title="Adicionar" accept="Criar" cancel="Cancelar">
-                    @include('ong.components.adicionar')
-                </x-modal-container>
-            </form>
 
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 bg-gray-300">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-250">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 Id
@@ -56,14 +55,17 @@
                                 Data
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Descrição
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Opções</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($projetos as $projeto)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $projeto->id }}
                             </th>
                             <td class="px-6 py-4">
@@ -75,8 +77,11 @@
                             <td class="px-6 py-4">
                                 {{ $projeto->data }}
                             </td>
+                            <td class="px-6 py-4">
+                                {{ $projeto->descricao }}
+                            </td>
                             <td class="px-6 py-4 text-right">
-                                <button data-modal-target="editar-projeto-{{$projeto->id}}" data-modal-toggle="editar-projeto-{{$projeto->id}}">Editar</button>
+                                <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300" data-modal-target="editar-projeto-{{$projeto->id}}" data-modal-toggle="editar-projeto-{{$projeto->id}}">Editar</button>
                                 <form>
                                     @csrf
                                     <x-modal-container hidden="false" idModal="editar-projeto-{{$projeto->id}}" title="Editar Projeto" accept="Salvar" cancel="Cancelar">
