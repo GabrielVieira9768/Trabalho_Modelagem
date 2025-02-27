@@ -72,6 +72,7 @@
                     </tbody>
                 </table>
             </div>
+            <div class="my-4">{{$inscricoes->links()}}</div>
         </div>
     </div>
 </body>
