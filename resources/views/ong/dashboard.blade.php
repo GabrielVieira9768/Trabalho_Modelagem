@@ -11,75 +11,87 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
-    <header>
-        <h1>Dashboard da Ong</h1>
-    </header>
+<body class="text-gray-900 antialiased bg-cyan-200">
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="p-8 rounded-lg w-full max-w-5xl">
+            <div class="mt-6">
 
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
+            </div>
+            <div class="w-full h-screen absolute top-0 left-0">
+                @include('components.navbar')
+            </div>
 
-    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        Logout
-    </a>
+            <h2 class="text-4xl font-bold text-gray-900 mt-30 mb-8 text-center">Projetos Criados</h2>
 
-    <button data-modal-target="delete-equipe-pavimentacao" data-modal-toggle="delete-equipe-pavimentacao">
-        Adicionar
-    </button>
+            <div class="text-right">
+                <button type="button" data-modal-target="adicionar-projeto" data-modal-toggle="adicionar-projeto"
+                    class="mb-4 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                    Adicionar
+                </button>
+
+            </div>
+
+            <form>
+                @csrf
+                <x-modal-container hidden="false" idModal="adicionar-projeto" title="Adicionar" accept="Criar" cancel="Cancelar">
+                    @include('ong.components.adicionar')
+                </x-modal-container>
+            </form>
 
 
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Nome
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Categoria
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Data
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                <span class="sr-only">Opções</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($projetos as $projeto)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $projeto->id }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $projeto->nome }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ App\Models\Ong::find($projeto->ong_id)->categoria }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $projeto->data }}
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button data-modal-target="editar-projeto-{{$projeto->id}}" data-modal-toggle="editar-projeto-{{$projeto->id}}">Editar</button>
+                                <form>
+                                    @csrf
+                                    <x-modal-container hidden="false" idModal="editar-projeto-{{$projeto->id}}" title="Editar Projeto" accept="Salvar" cancel="Cancelar">
+                                        @include('ong.components.editar-projeto')
+                                    </x-modal-container>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Id
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Nome
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Categoria
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Data
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">Opções</span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($projetos as $projeto)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $projeto->id }}
-                        </th>
-                        <td class="px-6 py-4">
-                            {{ $projeto->nome }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ App\Models\Ong::find($projeto->ong_id)->categoria }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $projeto->data }}
-                        </td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        </div>
     </div>
-
-
-    <x-modal-container hidden="false" idModal="delete-equipe-pavimentacao" title="Adicionar Projeto" accept="Criar" cancel="Cancelar">
-        @include('ong.components.adicionar')
-    </x-modal-container>
-
 </body>
 
 </html>
