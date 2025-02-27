@@ -30,11 +30,18 @@
             @foreach ($projetos as $projeto)
             <!-- Card 1 -->
             <div class="bg-[#fff] shadow-lg rounded-lg text-center overflow-hidden">
-                <img src="{{ asset('images/project.png') }}" alt="Imagem Card 1" class="w-full h-60 object-cover">
+                <img src="{{ $projeto->imagem ? asset('storage/projetos/' . $projeto->imagem) : asset('storage/projetos/project.png') }}" alt="{{ $projeto->nome }}" class="w-full h-60 object-cover">
                 <div class="p-6">
                     <h3 class="text-2xl font-bold text-gray-900">{{ $projeto->nome }}</h3>
-                    <p class="text-[#256aa5] mt-2">{{ $projeto->descricao }}</p>
+                    <p class="text-[#256aa5] mt-2">{{ \Illuminate\Support\Str::limit($projeto->descricao, 100, '...') }}</p>
                 </div>
+                <form action="{{route('projetos.individual', $projeto->id)}}" method="POST">
+                    @csrf
+                    <button type="submit"
+                        class="mt-4 bg-[#256aa5] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#1a4f7a] transition duration-300 ease-in-out transform hover:scale-105">
+                        Ler mais
+                    </button>
+                </form>
             </div>
             @endforeach
         </div>
