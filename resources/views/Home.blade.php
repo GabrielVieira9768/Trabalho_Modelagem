@@ -38,7 +38,7 @@
                 <form action="{{route('projetos.individual', $projeto->id)}}" method="POST">
                     @csrf
                     <button type="submit"
-                        class="mt-4 bg-[#256aa5] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#1a4f7a] transition duration-300 ease-in-out transform hover:scale-105">
+                        class="mb-8 mt-4 bg-[#256aa5] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#1a4f7a] transition duration-300 ease-in-out transform hover:scale-105">
                         Ler mais
                     </button>
                 </form>

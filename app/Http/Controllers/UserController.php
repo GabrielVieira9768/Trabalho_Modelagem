@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $inscricoes = Inscricao::where('user_id', auth()->user()->id)->pagiante(5);
+        $inscricoes = Inscricao::where('user_id', auth()->user()->id)->paginate(5);
         return view('voluntario.dashboard', compact('inscricoes'));
     }
 
